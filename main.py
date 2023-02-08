@@ -91,8 +91,8 @@ with tab3:
                 selected_options = [False, False, False]
                 
                 with st.grid(columns=3, max_columns=3) as grid:
-                for i, option in enumerate(options):
-                        grid[i, 0] = st.checkbox(option, selected_options[i], key=i, on_click=lambda change: handle_checkbox_change(change, i))
+                        for i, option in enumerate(options):
+                                grid[i, 0] = st.checkbox(option, selected_options[i], key=i, on_click=lambda change: handle_checkbox_change(change, i))
 
                 selected_row = grid_table["selected_rows"]
 
