@@ -85,4 +85,3 @@ with tab3:
                 for row in selected_row:
                         msg = delete_resource(row["Name"])
                 st.success(msg, icon="✅")
-                refresh_gid()
