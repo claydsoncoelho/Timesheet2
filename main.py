@@ -8,9 +8,6 @@ tab1, tab2, tab3 = st.tabs(["Time Entry", "Reports", "Team"])
 with open("timesheet.txt", "w") as f:
     st.write("File deleted")
 
-with open("timesheet.txt", "r") as f:
-        data = f.read()
-        st.write(data)
         
 def insert_resource(name, rate):
         with open("timesheet.txt", "a") as f:
@@ -50,6 +47,10 @@ def get_all_resources():
 with tab1:
         st.header("A cat")
         st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
+        
+        with open("timesheet.txt", "r") as f:
+            data = f.read()
+            st.write(data)
 
 with tab2:
         st.header("A dog")
