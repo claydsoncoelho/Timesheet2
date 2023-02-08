@@ -5,12 +5,16 @@ from st_aggrid.grid_options_builder import GridOptionsBuilder
 
 tab1, tab2, tab3 = st.tabs(["Time Entry", "Reports", "Team"])
 
-#with open("timesheet.txt", "w") as f:
-#    st.write("File deleted")
+with open("timesheet.txt", "w") as f:
+    st.write("File deleted")
         
 def insert_resource(name, rate):
     with open("timesheet.txt", "a") as f:
-            f.write(f"{name}    {rate}\n")
+        f.write(f"{name}    {rate}\n")
+    
+    with open("timesheet.txt", "r") as f:
+        data = f.read()
+        st.write(data)
     return name + " | " + str(rate)
 
 
