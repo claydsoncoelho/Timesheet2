@@ -20,7 +20,6 @@ def delete_resource(name):
         my_data = pd.read_csv("timesheet.txt", sep="\t", header=None, names=header)
         index_to_delete = my_data[my_data['Name'] == name].index
         my_data.drop(index_to_delete, inplace=True)
-        st.write(my_data) 
         my_data.to_csv("timesheet.txt", index=False, sep="\t")
         return "Resources deleted."
 
@@ -35,8 +34,7 @@ def get_all_resources():
                                 "Rate": [123]
                         }
                 )
-                
-        st.write(my_data)
+
         return my_data
 
 
