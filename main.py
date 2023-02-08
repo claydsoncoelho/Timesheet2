@@ -62,6 +62,16 @@ with tab3:
         gridoptions = gd.build()
 
         grid_table = AgGrid(resource_list, gridOptions=gridoptions, update_mode=GridUpdateMode.SELECTION_CHANGED)
+        
+        if 'save_button' not in st.session_state:
+                st.session_state.disabled_save = False
+        
+        save_button = st.button("Save member", key='save_button', disabled=st.session_state.disabled_save)
+    
+        if save_button:
+                if name and rate:
+                        insert_resource(resource_list, name, rate)
+                        st.success('Saved', icon="✅")
     
         selected_row = grid_table["selected_rows"]
     
@@ -74,16 +84,6 @@ with tab3:
         elif len(selected_row) > 1:
                 st.session_state.disabled_save = True
                 st.session_state.disabled_delete = False
-        
-        if 'save_button' not in st.session_state:
-                st.session_state.disabled_save = False
-        
-        save_button = st.button("Save member", key='save_button', disabled=st.session_state.disabled_save)
-    
-        if save_button:
-                if name and rate:
-                        insert_resource(resource_list, name, rate)
-                        st.success('Saved', icon="✅")
             
         if 'delete_button' not in st.session_state:
                 st.session_state.disabled_save = True
