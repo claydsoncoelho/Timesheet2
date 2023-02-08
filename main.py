@@ -25,8 +25,10 @@ def delete_resource(name):
 
 
 def get_all_resources():
-    #header = ["Name", "Rate"]
-    my_data = pd.read_csv("timesheet.txt", sep="\t")
+    try:
+        my_data = pd.read_csv("timesheet.txt", sep="\t")
+    except:
+        my_data pd.DataFrame("Name": [], "Rate": [])
     return my_data
 
 
