@@ -22,7 +22,7 @@ def delete_resource(name):
 
 
 def get_all_resources():
-    my_date = pd.read_csv("timesheet.txt", sep="\t", header=None)
+    my_data = pd.read_csv("timesheet.txt", sep="\t", header=None)
     return my_data
 
 
