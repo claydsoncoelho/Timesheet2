@@ -82,7 +82,7 @@ with tab3:
     
         if save_button:
                 if name and rate:
-                        insert_resource(resource_list, name, rate)
+                        insert_resource(resource_list)
                         st.success('Saved', icon="✅")
             
         if 'delete_button' not in st.session_state:
