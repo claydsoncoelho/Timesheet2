@@ -55,15 +55,20 @@ with tab3:
         name = st.text_input("Name", value="", key="Name")
         rate = st.number_input("Rate", value=0.00, key="Rate")
         
-        if 'save_button' not in st.session_state:
-                st.session_state.disabled_save = False
-        
-        save_button = st.button("Save member", key='save_button', disabled=st.session_state.disabled_save)
+        save_button = st.button("Save member", key='save_button')
     
         if save_button:
                 if name and rate:
                         insert_resource(name, rate)
                         st.success('Saved', icon="✅")
+                        
+        
+        delete_button = st.button("Delete member", key='delete_button')
+    
+        if delete_button:
+                for row in selected_row:
+                        msg = delete_resource(row["Name"])
+                st.success(msg, icon="✅")
         
         resource_list = get_all_resources()
     
@@ -74,23 +79,3 @@ with tab3:
         grid_table = AgGrid(resource_list, gridOptions=gridoptions, update_mode=GridUpdateMode.SELECTION_CHANGED)
 
         selected_row = grid_table["selected_rows"]
-    
-        if len(selected_row) == 0:
-                st.session_state.disabled_delete = True
-                st.session_state.disabled_save = False
-        elif len(selected_row) == 1:
-                st.session_state.disabled_delete = False
-                st.session_state.disabled_save = False
-        elif len(selected_row) > 1:
-                st.session_state.disabled_save = True
-                st.session_state.disabled_delete = False
-            
-        if 'delete_button' not in st.session_state:
-                st.session_state.disabled_save = True
-        
-        delete_button = st.button("Delete member", key='delete_button', disabled=st.session_state.disabled_delete)
-    
-        if delete_button:
-                for row in selected_row:
-                        msg = delete_resource(row["Name"])
-                st.success(msg, icon="✅")
