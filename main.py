@@ -90,5 +90,4 @@ with tab3:
                         for row in selected_row:
                                 msg = delete_resource(row["Name"])
                         st.success(msg, icon="✅")
-                        st.set_page_config(page_title="Refreshing Page", page_icon=":fast_forward:", layout="wide")
                         refresh_flag = True
