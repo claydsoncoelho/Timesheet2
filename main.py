@@ -13,18 +13,17 @@ def insert_resource(name, rate):
 
 
 def delete_resource(name):
-    cnx = snowflake.connector.connect(**st.secrets["snowflake"])
-    with cnx.cursor() as my_cur:
-        sql_cmd = "DELETE FROM TIMESHEET_DB.PUBLIC.RESOURCES WHERE NAME = '" + name + "'"
-        my_cur.execute(sql_cmd)
-    cnx.close()
+    header = ["Name", "Rate"]
+    my_data = pd.read_csv("timesheet.txt", sep="\t", header=None, names=header)
+    index_to_delete = df[df['Name'] == name].index
+    my_data.drop(index_to_delete, inplace=True)
+    st.write(my_data) 
     return "Resources deleted."
 
 
 def get_all_resources():
     header = ["Name", "Rate"]
     my_data = pd.read_csv("timesheet.txt", sep="\t", header=None, names=header)
-    st.write(my_data)
     return my_data
 
 
@@ -81,27 +80,3 @@ with tab3:
         for row in selected_row:
             msg = delete_resource(row["Name"])
         st.success(msg, icon="✅")
-
-
-
-
-import streamlit as st
-
-def main():
-    st.title("Time Sheet Application")
-
-    start_time = st.time_input("Start Time")
-    end_time = st.time_input("End Time")
-    task = st.text_input("Task Description")
-
-    if st.button("Submit"):
-        with open("timesheet.txt", "a") as f:
-            f.write(f"{start_time} - {end_time}: {task}\n")
-        st.success("Time sheet submitted!")
-        
-        with open("timesheet.txt", "r") as f:
-            content = f.read()
-        st.write(content)
-
-if __name__ == '__main__':
-    main()
