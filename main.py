@@ -11,6 +11,10 @@ def main():
         with open("timesheet.txt", "a") as f:
             f.write(f"{start_time} - {end_time}: {task}\n")
         st.success("Time sheet submitted!")
+        
+        with open("timesheet.txt", "r") as f:
+            content = f.read()
+        st.write(content)
 
 if __name__ == '__main__':
     main()
