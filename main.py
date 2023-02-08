@@ -42,9 +42,9 @@ def get_all_resources():
                                 "Rate": [123]
                         }
                 )
-    
-    st.write(my_data)
-    return my_data
+                
+        st.write(my_data)
+        return my_data
 
 
 with tab1:
