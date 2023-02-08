@@ -61,14 +61,6 @@ with tab3:
                 if name and rate:
                         insert_resource(name, rate)
                         st.success('Saved', icon="✅")
-                        
-        
-        delete_button = st.button("Delete member", key='delete_button')
-    
-        if delete_button:
-                for row in selected_row:
-                        msg = delete_resource(row["Name"])
-                st.success(msg, icon="✅")
         
         resource_list = get_all_resources()
     
@@ -77,5 +69,12 @@ with tab3:
         gridoptions = gd.build()
 
         grid_table = AgGrid(resource_list, gridOptions=gridoptions, update_mode=GridUpdateMode.SELECTION_CHANGED)
-
+        
         selected_row = grid_table["selected_rows"]
+        
+        delete_button = st.button("Delete member", key='delete_button')
+
+        if delete_button:
+                for row in selected_row:
+                        msg = delete_resource(row["Name"])
+                st.success(msg, icon="✅")
