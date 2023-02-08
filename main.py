@@ -23,7 +23,7 @@ def delete_resource(name):
 
 def get_all_resources():
     header = ["Name", "Rate"]
-    my_data = pd.read_csv("timesheet.txt", sep="\t", header=none, names=header)
+    my_data = pd.read_csv("timesheet.txt", sep="\t", header=None, names=header)
     st.write(my_data)
     return my_data
 
