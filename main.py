@@ -15,7 +15,7 @@ def insert_resource(name, rate):
 def delete_resource(name):
     header = ["Name", "Rate"]
     my_data = pd.read_csv("timesheet.txt", sep="\t", header=None, names=header)
-    index_to_delete = df[df['Name'] == name].index
+    index_to_delete = my_data[my_data['Name'] == name].index
     my_data.drop(index_to_delete, inplace=True)
     st.write(my_data) 
     return "Resources deleted."
