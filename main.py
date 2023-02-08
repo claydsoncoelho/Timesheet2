@@ -9,14 +9,8 @@ tab1, tab2, tab3 = st.tabs(["Time Entry", "Reports", "Team"])
 #    st.write("File deleted")
 
         
-def insert_resource(name, rate):
-        with open("timesheet.txt", "a") as f:
-                f.write(f"{name}    {rate}\n")
-    
-        with open("timesheet.txt", "r") as f:
-                data = f.read()
-                st.write(data)
-        return name + " | " + str(rate)
+def insert_resource(df):
+        df.to_csv("timesheet.txt", index=False, sep="\t")
 
 
 def delete_resource(name):
@@ -88,8 +82,8 @@ with tab3:
     
         if save_button:
                 if name and rate:
-                        msg = insert_resource(name, rate)
-                        st.success(msg, icon="✅")
+                        insert_resource(resource_list, name, rate)
+                        st.success('Saved', icon="✅")
             
         if 'delete_button' not in st.session_state:
                 st.session_state.disabled_save = True
