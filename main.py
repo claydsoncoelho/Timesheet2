@@ -91,3 +91,4 @@ with tab3:
                                 msg = delete_resource(row["Name"])
                         st.success(msg, icon="✅")
                         refresh_flag = True
+                        st.empty()
