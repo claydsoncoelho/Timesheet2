@@ -30,8 +30,8 @@ def get_all_resources():
     except:
         my_data = pd.DataFrame(
             {
-                "Name": [],
-                "Rate": []
+                "Name": ['ABC'],
+                "Rate": [123]
             }
         )
     
