@@ -55,9 +55,6 @@ def refresh_gid():
 def handle_checkbox_change(change, option_index):
         selected_options[option_index] = change
 
-        with st.grid(columns=3, max_columns=3) as grid:
-                for i, option in enumerate(options):
-                        grid[i, 0] = st.checkbox(option, selected_options[i], key=i, on_click=lambda change: handle_checkbox_change(change, i))
         
 
 with tab1:
@@ -92,6 +89,10 @@ with tab3:
                 
                 options = ['Option 1', 'Option 2', 'Option 3']
                 selected_options = [False, False, False]
+                
+                with st.grid(columns=3, max_columns=3) as grid:
+                for i, option in enumerate(options):
+                        grid[i, 0] = st.checkbox(option, selected_options[i], key=i, on_click=lambda change: handle_checkbox_change(change, i))
 
                 selected_row = grid_table["selected_rows"]
 
