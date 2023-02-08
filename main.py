@@ -70,10 +70,10 @@ with tab3:
         while refresh_flag:
                 refresh_flag = False
                 st.header("Team")
-                name = st.text_input("Name", value="", key="Name")
-                rate = st.number_input("Rate", value=0.00, key="Rate")
+                name = st.text_input("Name", value="")
+                rate = st.number_input("Rate", value=0.00)
 
-                save_button = st.button("Save member", key='save_button')
+                save_button = st.button("Save member")
 
                 if save_button:
                         if name and rate:
@@ -84,7 +84,7 @@ with tab3:
 
                 selected_row = grid_table["selected_rows"]
 
-                delete_button = st.button("Delete member", key='delete_button')
+                delete_button = st.button("Delete member")
 
                 if delete_button:
                         for row in selected_row:
