@@ -18,7 +18,7 @@ def delete_resource(name):
     index_to_delete = my_data[my_data['Name'] == name].index
     my_data.drop(index_to_delete, inplace=True)
     st.write(my_data) 
-    df.to_csv("timesheet.txt", index=False)
+    my_data.to_csv("timesheet.txt", index=False)
     return "Resources deleted."
 
 
