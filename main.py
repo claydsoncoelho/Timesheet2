@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from st_aggrid import AgGrid, GridUpdateMode
 from st_aggrid.grid_options_builder import GridOptionsBuilder
+import time
 
 tab1, tab2, tab3 = st.tabs(["Time Entry", "Reports", "Team"])
 
@@ -75,14 +76,16 @@ with tab3:
                         insert_resource(name, rate)
                         st.success('Saved', icon="✅")
         
-        grid_table = refresh_gid()
+        while True:
+                grid_table = refresh_gid()
         
-        selected_row = grid_table["selected_rows"]
-        
-        delete_button = st.button("Delete member", key='delete_button')
+                selected_row = grid_table["selected_rows"]
 
-        if delete_button:
-                for row in selected_row:
-                        msg = delete_resource(row["Name"])
-                st.success(msg, icon="✅")
-                st.set_page_config(page_title="Refreshing Page", page_icon=":fast_forward:", layout="wide")
+                delete_button = st.button("Delete member", key='delete_button')
+
+                if delete_button:
+                        for row in selected_row:
+                                msg = delete_resource(row["Name"])
+                        st.success(msg, icon="✅")
+                        st.set_page_config(page_title="Refreshing Page", page_icon=":fast_forward:", layout="wide")
+                time.sleep(5)
