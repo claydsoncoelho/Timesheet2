@@ -5,7 +5,9 @@ from st_aggrid.grid_options_builder import GridOptionsBuilder
 
 tab1, tab2, tab3 = st.tabs(["Time Entry", "Reports", "Team"])
 
-
+with open("timesheet.txt", "w") as f:
+    st.write("File deleted")
+        
 def insert_resource(name, rate):
     with open("timesheet.txt", "a") as f:
             f.write(f"{name}    {rate}\n")
@@ -18,7 +20,7 @@ def delete_resource(name):
     index_to_delete = my_data[my_data['Name'] == name].index
     my_data.drop(index_to_delete, inplace=True)
     st.write(my_data) 
-    my_data.to_csv("timesheet.txt", index=False)
+    my_data.to_csv("timesheet.txt", index=False, sep="\t")
     return "Resources deleted."
 
 
