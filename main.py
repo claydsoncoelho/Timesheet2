@@ -8,21 +8,6 @@ tab1, tab2, tab3 = st.tabs(["Time Entry", "Reports", "Team"])
 #with open("timesheet.txt", "w") as f:
 #    st.write("File deleted")
 
-        
-def insert_resource(df, name, rate):
-        new_row = {'Name': name, 'Rate': rate}
-        df = df.append(new_row, ignore_index=True)
-        df.to_csv("timesheet.txt", index=False, sep="\t")
-
-
-def delete_resource(name):
-        header = ["Name", "Rate"]
-        my_data = pd.read_csv("timesheet.txt", sep="\t", header=None, names=header)
-        index_to_delete = my_data[my_data['Name'] == name].index
-        my_data.drop(index_to_delete, inplace=True)
-        my_data.to_csv("timesheet.txt", index=False, sep="\t")
-        return "Resources deleted."
-
 
 def get_all_resources():
         try:
@@ -37,6 +22,21 @@ def get_all_resources():
 
         return my_data
 
+
+def insert_resource(name, rate):
+        new_row = {'Name': name, 'Rate': rate}
+        df = get_all_resources()
+        df = df.append(new_row, ignore_index=True)
+        df.to_csv("timesheet.txt", index=False, sep="\t")
+
+
+def delete_resource(name):
+        header = ["Name", "Rate"]
+        my_data = pd.read_csv("timesheet.txt", sep="\t", header=None, names=header)
+        index_to_delete = my_data[my_data['Name'] == name].index
+        my_data.drop(index_to_delete, inplace=True)
+        my_data.to_csv("timesheet.txt", index=False, sep="\t")
+        return "Resources deleted."
 
 with tab1:
         st.header("A cat")
@@ -62,7 +62,7 @@ with tab3:
     
         if save_button:
                 if name and rate:
-                        insert_resource(resource_list, name, rate)
+                        insert_resource(name, rate)
                         st.success('Saved', icon="✅")
         
         resource_list = get_all_resources()
