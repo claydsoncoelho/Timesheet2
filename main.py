@@ -37,6 +37,18 @@ def delete_resource(name):
         my_data.to_csv("timesheet.txt", index=False, sep="\t")
         return "Resources deleted."
 
+
+def refresh_gid():
+        st.write("")
+        
+        resource_list = get_all_resources()
+        
+        gd = GridOptionsBuilder.from_dataframe(resource_list)
+        gd.configure_selection(selection_mode='multiple', use_checkbox=True)
+        gridoptions = gd.build()
+
+        grid_table = AgGrid(resource_list, gridOptions=gridoptions, update_mode=GridUpdateMode.SELECTION_CHANGED)
+
 with tab1:
         st.header("A cat")
         st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
@@ -61,13 +73,7 @@ with tab3:
                         insert_resource(name, rate)
                         st.success('Saved', icon="✅")
         
-        resource_list = get_all_resources()
-    
-        gd = GridOptionsBuilder.from_dataframe(resource_list)
-        gd.configure_selection(selection_mode='multiple', use_checkbox=True)
-        gridoptions = gd.build()
-
-        grid_table = AgGrid(resource_list, gridOptions=gridoptions, update_mode=GridUpdateMode.SELECTION_CHANGED)
+        refresh_gid()
         
         selected_row = grid_table["selected_rows"]
         
@@ -77,3 +83,4 @@ with tab3:
                 for row in selected_row:
                         msg = delete_resource(row["Name"])
                 st.success(msg, icon="✅")
+                refresh_gid()
