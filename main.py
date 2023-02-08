@@ -54,14 +54,6 @@ with tab3:
         st.header("Team")
         name = st.text_input("Name", value="", key="Name")
         rate = st.number_input("Rate", value=0.00, key="Rate")
-
-        resource_list = get_all_resources()
-    
-        gd = GridOptionsBuilder.from_dataframe(resource_list)
-        gd.configure_selection(selection_mode='multiple', use_checkbox=True)
-        gridoptions = gd.build()
-
-        grid_table = AgGrid(resource_list, gridOptions=gridoptions, update_mode=GridUpdateMode.SELECTION_CHANGED)
         
         if 'save_button' not in st.session_state:
                 st.session_state.disabled_save = False
@@ -72,7 +64,15 @@ with tab3:
                 if name and rate:
                         insert_resource(resource_list, name, rate)
                         st.success('Saved', icon="✅")
+        
+        resource_list = get_all_resources()
     
+        gd = GridOptionsBuilder.from_dataframe(resource_list)
+        gd.configure_selection(selection_mode='multiple', use_checkbox=True)
+        gridoptions = gd.build()
+
+        grid_table = AgGrid(resource_list, gridOptions=gridoptions, update_mode=GridUpdateMode.SELECTION_CHANGED)
+
         selected_row = grid_table["selected_rows"]
     
         if len(selected_row) == 0:
