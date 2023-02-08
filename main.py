@@ -49,8 +49,16 @@ def refresh_gid():
         gridoptions = gd.build()
 
         grid_table = AgGrid(resource_list, gridOptions=gridoptions, update_mode=GridUpdateMode.SELECTION_CHANGED)
-        
         return grid_table;
+        
+        
+def handle_checkbox_change(change, option_index):
+        selected_options[option_index] = change
+
+        with st.grid(columns=3, max_columns=3) as grid:
+                for i, option in enumerate(options):
+                        grid[i, 0] = st.checkbox(option, selected_options[i], key=i, on_click=lambda change: handle_checkbox_change(change, i))
+        
 
 with tab1:
         st.header("A cat")
@@ -81,6 +89,9 @@ with tab3:
                                 st.success('Saved', icon="✅")
 
                 grid_table = refresh_gid()
+                
+                options = ['Option 1', 'Option 2', 'Option 3']
+                selected_options = [False, False, False]
 
                 selected_row = grid_table["selected_rows"]
 
