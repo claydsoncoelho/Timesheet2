@@ -34,7 +34,8 @@ def get_all_resources():
                 "Rate": []
             }
         )
-        
+    
+    st.write(my_data)
     return my_data
 
 
