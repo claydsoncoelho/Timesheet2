@@ -9,7 +9,9 @@ tab1, tab2, tab3 = st.tabs(["Time Entry", "Reports", "Team"])
 #    st.write("File deleted")
 
         
-def insert_resource(df):
+def insert_resource(df, name, rate):
+        new_row = {'Name': name, 'Rate': rate}
+        df = df.append(new_row, ignore_index=True)
         df.to_csv("timesheet.txt", index=False, sep="\t")
 
 
@@ -82,7 +84,7 @@ with tab3:
     
         if save_button:
                 if name and rate:
-                        insert_resource(resource_list)
+                        insert_resource(resource_list, name, rate)
                         st.success('Saved', icon="✅")
             
         if 'delete_button' not in st.session_state:
