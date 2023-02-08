@@ -48,6 +48,8 @@ def refresh_gid():
         gridoptions = gd.build()
 
         grid_table = AgGrid(resource_list, gridOptions=gridoptions, update_mode=GridUpdateMode.SELECTION_CHANGED)
+        
+        return grid_table;
 
 with tab1:
         st.header("A cat")
@@ -73,7 +75,7 @@ with tab3:
                         insert_resource(name, rate)
                         st.success('Saved', icon="✅")
         
-        refresh_gid()
+        grid_table = refresh_gid()
         
         selected_row = grid_table["selected_rows"]
         
