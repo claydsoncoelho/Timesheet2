@@ -98,4 +98,4 @@ with tab3:
         if delete_button:
                 for row in selected_row:
                         msg = delete_resource(row["Name"])
-        st.success(msg, icon="✅")
+                st.success(msg, icon="✅")
