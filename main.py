@@ -81,7 +81,7 @@ with tab3:
                 row_label = f"{row['Name']} {row['Rate']}"
                 checkbox = st.checkbox(row_label, is_selected, key=f"checkbox_{i}")
                 if checkbox:
-                        selected_rows[row_index] = not selected_rows[row_index]
+                        selected_rows[i] = not selected_rows[i]
 
         if delete_button:
                 df = df[~df.index.isin([i for i, row in df.iterrows() if selected_rows[i]])]
