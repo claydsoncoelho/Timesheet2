@@ -40,19 +40,12 @@ def delete_resource(name):
         
         
 def refresh_gid():
-    df = get_all_resources()
-        
-    # Create a checkbox for each row in the DataFrame
-    selected_rows = [False] * len(df)
-    
     # Display the DataFrame with checkboxes
     st.write("Data:")
     for i, row in df.iterrows():
-        is_selected = selected_rows[i]
+        is_selected = False
         row_label = f"{row['Name']} {row['Rate']}"
         checkbox = st.checkbox(row_label, is_selected, key=f"checkbox_{i}")
-        if checkbox:
-                selected_rows[i] = not selected_rows[i]
     
     return df;
 
@@ -84,6 +77,10 @@ with tab3:
         grid_table = refresh_gid()
 
         delete_button = st.button("Delete member")
+        
+        # Create a checkbox for each row in the DataFrame
+        df = get_all_resources()
+        selected_rows = [False] * len(df)
 
         if delete_button:
                 for row in selected_row:
