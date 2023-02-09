@@ -86,7 +86,7 @@ with tab3:
         if delete_button:
                 df = df[~df.index.isin([i for i, row in df.iterrows() if not(selected_rows[i])])]
                 selected_rows = [False] * len(df)
-                st.write("Data:")
                 for _, row in df.iterrows():
                         msg = delete_resource(row["Name"])
                 st.write('')
+                st.success(msg, icon="✅")
