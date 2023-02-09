@@ -37,9 +37,6 @@ def delete_resource(name):
         my_data.drop(index_to_delete, inplace=True)
         my_data.to_csv("timesheet.txt", index=False, sep="\t")
         return "Resources deleted."
-
-def handle_checkbox_change(change, option_index):
-    selected_options[option_index] = change
         
         
 def refresh_gid():
@@ -55,7 +52,7 @@ def refresh_gid():
         row_label = f"{row['Name']} {row['Rate']}"
         checkbox = st.checkbox(row_label, is_selected, key=f"checkbox_{i}")
         if checkbox:
-                handle_checkbox_change(i)
+                selected_rows[row_index] = not selected_rows[row_index]
     
     return df;
 
