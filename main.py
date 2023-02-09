@@ -52,7 +52,7 @@ def refresh_gid():
     st.write("Data:")
     for i, row in df.iterrows():
         is_selected = selected_rows[i]
-        row_label = f"{row['Column 1']} {row['Column 2']}"
+        row_label = f"{row['Name']} {row['Rate']}"
         checkbox = st.checkbox(row_label, is_selected, key=f"checkbox_{i}")
         if checkbox:
                 handle_checkbox_click(i)
