@@ -88,5 +88,5 @@ with tab3:
                 selected_rows = [False] * len(df)
                 st.write("Data:")
                 for row in df:
-                        msg = delete_resource(row["Name"])
+                        st.write(row)
                 st.success(msg, icon="✅")
