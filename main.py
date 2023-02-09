@@ -3,7 +3,7 @@ import pandas as pd
 
 # Create a sample DataFrame
 data = {
-    'Column 1': ['1', '2', '3', '4', '5'],
+    'Column 1': [1, 2, 3, 4, 5],
     'Column 2': ['A', 'B', 'C', 'D', 'E']
 }
 df = pd.DataFrame(data)
@@ -11,14 +11,17 @@ df = pd.DataFrame(data)
 # Create a checkbox for each row in the DataFrame
 selected_rows = [False] * len(df)
 
-def handle_checkbox_change(change, row_index):
-    selected_rows[row_index] = change
+def handle_checkbox_click(row_index):
+    selected_rows[row_index] = not selected_rows[row_index]
 
 # Display the DataFrame with checkboxes
 st.write("Data:")
 for i, row in df.iterrows():
-    st.write(st.checkbox(row['Column 1'], selected_rows[i], key=i, on_change=lambda change, i=i: handle_checkbox_change(change, i)),
-             row['Column 2'])
+    is_selected = selected_rows[i]
+    row_label = f"{row['Column 1']} {row['Column 2']}"
+    checkbox = st.checkbox(row_label, is_selected)
+    if checkbox:
+        handle_checkbox_click(i)
 
 # Add a delete button
 if st.button("Delete Selected Rows"):
@@ -26,5 +29,8 @@ if st.button("Delete Selected Rows"):
     selected_rows = [False] * len(df)
     st.write("Data:")
     for i, row in df.iterrows():
-        st.write(st.checkbox(row['Column 1'], selected_rows[i], key=i, on_click=lambda change, i=i: handle_checkbox_change(change, i)),
-                 row['Column 2'])
+        is_selected = selected_rows[i]
+        row_label = f"{row['Column 1']} {row['Column 2']}"
+        checkbox = st.checkbox(row_label, is_selected)
+        if checkbox:
+            handle_checkbox_click(i)
