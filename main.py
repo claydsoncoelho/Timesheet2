@@ -62,13 +62,10 @@ with tab3:
         rate = st.number_input("Rate", value=0.00)
 
         save_button = st.button("Save member")
-
         if save_button:
                 if name and rate:
                         insert_resource(name, rate)
                         st.success('Saved', icon="✅")
-
-        delete_button = st.button("Delete member")
         
         # Create a checkbox for each row in the DataFrame
         df = get_all_resources()
@@ -82,7 +79,8 @@ with tab3:
                 checkbox = st.checkbox(row_label, is_selected, key=f"checkbox_{i}")
                 if checkbox:
                         selected_rows[i] = not selected_rows[i]
-
+                        
+        delete_button = st.button("Delete member")
         if delete_button:
                 df = df[~df.index.isin([i for i, row in df.iterrows() if not(selected_rows[i])])]
                 selected_rows = [False] * len(df)
