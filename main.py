@@ -17,4 +17,5 @@ def handle_checkbox_change(change, row_index):
 # Display the DataFrame with checkboxes
 st.write("Data:")
 for i, row in df.iterrows():
-    st.write(st.checkbox(row, selected_rows[i], key=i, on_change=lambda change, i=i: handle_checkbox_change(change, i)), df)
+    st.write(st.checkbox(row['Column 1'], selected_rows[i], key=i, on_click=lambda change, i=i: handle_checkbox_change(change, i)),
+             row['Column 2'])
