@@ -90,4 +90,3 @@ with tab3:
                 for _, row in df.iterrows():
                         msg = delete_resource(row["Name"])
                 st.write('')
-                st.success(msg, icon="✅")
