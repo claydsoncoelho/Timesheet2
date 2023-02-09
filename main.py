@@ -86,11 +86,12 @@ with tab3:
 
         grid_table = refresh_gid()
 
-        selected_row = grid_table["selected_rows"]
-
         delete_button = st.button("Delete member")
 
         if delete_button:
                 for row in selected_row:
                         msg = delete_resource(row["Name"])
                 st.success(msg, icon="✅")
+                    
+                df = df[~df.index.isin([i for i, row in df.iterrows() if selected_rows[i]])]
+                st.write(df)
