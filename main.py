@@ -26,6 +26,7 @@ for i, row in df.iterrows():
 # Add a delete button
 if st.button("Delete Selected Rows"):
     df = df[~df.index.isin([i for i, row in df.iterrows() if selected_rows[i]])]
+    st.write(df)
     selected_rows = [False] * len(df)
     st.write("Data:")
     for i, row in df.iterrows():
