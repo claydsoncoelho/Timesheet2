@@ -40,14 +40,18 @@ def delete_resource(name):
         
         
 def refresh_gid():
-    # Display the DataFrame with checkboxes
-    st.write("Data:")
-    for i, row in df.iterrows():
-        is_selected = False
-        row_label = f"{row['Name']} {row['Rate']}"
-        checkbox = st.checkbox(row_label, is_selected, key=f"checkbox_{i}")
+        # Create a checkbox for each row in the DataFrame
+        df = get_all_resources()
+        selected_rows = [False] * len(df)
+                                      
+        # Display the DataFrame with checkboxes
+        st.write("Data:")
+        for i, row in df.iterrows():
+                is_selected = False
+                row_label = f"{row['Name']} {row['Rate']}"
+                checkbox = st.checkbox(row_label, is_selected, key=f"checkbox_{i}")
     
-    return df;
+        return df;
 
         
 with tab1:
