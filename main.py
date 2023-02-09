@@ -50,12 +50,12 @@ def refresh_gid():
     
     # Display the DataFrame with checkboxes
     st.write("Data:")
-        for i, row in df.iterrows():
-    is_selected = selected_rows[i]
-    row_label = f"{row['Column 1']} {row['Column 2']}"
-    checkbox = st.checkbox(row_label, is_selected, key=f"checkbox_{i}")
-    if checkbox:
-        handle_checkbox_click(i)
+    for i, row in df.iterrows():
+        is_selected = selected_rows[i]
+        row_label = f"{row['Column 1']} {row['Column 2']}"
+        checkbox = st.checkbox(row_label, is_selected, key=f"checkbox_{i}")
+        if checkbox:
+                handle_checkbox_click(i)
     
     return df;
 
