@@ -84,7 +84,7 @@ with tab3:
                         selected_rows[i] = not selected_rows[i]
 
         if delete_button:
-                df = df[~df.index.isin([i for i, row in df.iterrows() if selected_rows[i]])]
+                df = df[~df.index.isin([i for i, row in df.iterrows() if not(selected_rows[i])])]
                 selected_rows = [False] * len(df)
                 st.write("Data:")
                 st.write(df)
