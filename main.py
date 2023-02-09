@@ -75,7 +75,7 @@ with tab3:
         st.write("Data:")
         for i, row in df.iterrows():
                 is_selected = False
-                row_label = f"{row['Name']} {row['Rate']}"
+                row_label = f"{row['Name']}     -       {row['Rate']}"
                 checkbox = st.checkbox(row_label, is_selected, key=f"checkbox_{i}")
                 if checkbox:
                         selected_rows[i] = not selected_rows[i]
