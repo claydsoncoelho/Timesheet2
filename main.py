@@ -94,7 +94,7 @@ with tab3:
                 st.write("")
                 
                 for i, option in enumerate(options):
-                        st.write(st.checkbox(option, selected_options[i], key=i, on_click=lambda change: handle_checkbox_change(change, i)))
+                        st.write(st.checkbox(option, selected_options[i], key=i, on_change=lambda change: handle_checkbox_change(change, i)))
 
                 st.write("")
 
