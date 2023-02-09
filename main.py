@@ -87,6 +87,6 @@ with tab3:
                 df = df[~df.index.isin([i for i, row in df.iterrows() if not(selected_rows[i])])]
                 selected_rows = [False] * len(df)
                 st.write("Data:")
-                for _, row in df.interrows():
+                for _, row in df.iterrows():
                         msg = delete_resource(row["Name"])
                 st.success(msg, icon="✅")
