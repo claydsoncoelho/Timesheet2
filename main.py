@@ -16,23 +16,21 @@ def handle_checkbox_click(row_index):
 
 # Display the DataFrame with checkboxes
 st.write("Data:")
-st.write(df.iterrows())
 for i, row in df.iterrows():
     is_selected = selected_rows[i]
     row_label = f"{row['Column 1']} {row['Column 2']}"
-    checkbox = st.checkbox(row_label, is_selected)
+    checkbox = st.checkbox(row_label, is_selected, key=f"checkbox_{i}")
     if checkbox:
         handle_checkbox_click(i)
 
 # Add a delete button
 if st.button("Delete Selected Rows"):
     df = df[~df.index.isin([i for i, row in df.iterrows() if selected_rows[i]])]
-    st.write(df)
     selected_rows = [False] * len(df)
     st.write("Data:")
     for i, row in df.iterrows():
         is_selected = selected_rows[i]
         row_label = f"{row['Column 1']} {row['Column 2']}"
-        checkbox = st.checkbox(row_label, is_selected)
+        checkbox = st.checkbox(row_label, is_selected, key=f"checkbox_{i}")
         if checkbox:
             handle_checkbox_click(i)
