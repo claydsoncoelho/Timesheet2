@@ -73,30 +73,24 @@ with tab2:
         st.image("https://static.streamlit.io/examples/dog.jpg", width=200)
 
 with tab3:
-        refresh_flag = True
-        
-        while refresh_flag:
-                refresh_flag = False
-                st.header("Team")
-                name = st.text_input("Name", value="")
-                rate = st.number_input("Rate", value=0.00)
+        st.header("Team")
+        name = st.text_input("Name", value="")
+        rate = st.number_input("Rate", value=0.00)
 
-                save_button = st.button("Save member")
+        save_button = st.button("Save member")
 
-                if save_button:
-                        if name and rate:
-                                insert_resource(name, rate)
-                                st.success('Saved', icon="✅")
+        if save_button:
+                if name and rate:
+                        insert_resource(name, rate)
+                        st.success('Saved', icon="✅")
 
-                grid_table = refresh_gid()
+        grid_table = refresh_gid()
 
-                selected_row = grid_table["selected_rows"]
+        selected_row = grid_table["selected_rows"]
 
-                delete_button = st.button("Delete member")
+        delete_button = st.button("Delete member")
 
-                if delete_button:
-                        for row in selected_row:
-                                msg = delete_resource(row["Name"])
-                        st.success(msg, icon="✅")
-                        refresh_flag = True
-                        st.empty()
+        if delete_button:
+                for row in selected_row:
+                        msg = delete_resource(row["Name"])
+                st.success(msg, icon="✅")
