@@ -55,7 +55,7 @@ def refresh_gid():
         row_label = f"{row['Name']} {row['Rate']}"
         checkbox = st.checkbox(row_label, is_selected, key=f"checkbox_{i}")
         if checkbox:
-                handle_checkbox_click(i)
+                handle_checkbox_change(i)
     
     return df;
 
