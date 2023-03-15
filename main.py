@@ -66,13 +66,11 @@ with tab3:
                 if name and rate:
                         insert_resource(name, rate)
                         st.success('Saved', icon="✅")
-        
-        # Create a checkbox for each row in the DataFrame
+       
         df = get_all_resources()
-        selected_rows = [False] * len(df)
                                       
         # Display the DataFrame with checkboxes
-        edited_df = st.experimental_data_editor(df)
+        edited_df = st.experimental_data_editor(df, num_rows="dynamic")
                         
         delete_button = st.button("Delete member")
         if delete_button:
