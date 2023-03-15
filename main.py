@@ -20,7 +20,7 @@ def get_all_resources():
         return my_data
 
 
-def save_resource(df):
+def save_resources(df):
         df.to_csv("timesheet.txt", index=False, sep="\t")       
         
 
