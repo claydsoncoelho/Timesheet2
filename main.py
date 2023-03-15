@@ -72,13 +72,7 @@ with tab3:
         selected_rows = [False] * len(df)
                                       
         # Display the DataFrame with checkboxes
-        st.write("Data:")
-        for i, row in df.iterrows():
-                is_selected = False
-                row_label = f"{row['Name']}     -       {row['Rate']}"
-                checkbox = st.checkbox(row_label, is_selected, key=f"checkbox_{i}")
-                if checkbox:
-                        selected_rows[i] = not selected_rows[i]
+        edited_df = st.experimental_data_editor(df)
                         
         delete_button = st.button("Delete member")
         if delete_button:
