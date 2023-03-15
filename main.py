@@ -40,4 +40,6 @@ with tab3:
         # Display the DataFrame with checkboxes
         edited_df = st.experimental_data_editor(df, num_rows="dynamic")
         
-        save_resources(edited_df)
+        if save_button:
+                save_resources(edited_df)
+                st.success('Saved', icon="✅")
